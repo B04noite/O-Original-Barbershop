@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio - O Original Barbershop</title>
+    <title>Como Chegar - O Original Barbershop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     <style>
         * {
             margin: 0;
@@ -56,7 +55,7 @@
             padding: 1rem 0;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         
@@ -171,112 +170,54 @@
             text-align: justify;
         }
         
-        /* Filtros de Categoria */
-        .portfolio-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .filter-btn {
-            background-color: transparent;
-            color: var(--light-color);
-            border: 2px solid var(--primary-color);
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--primary-color);
-            color: var(--light-color);
-        }
-        
-        /* Grid do Portfólio */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .portfolio-item {
-            position: relative;
+        /* Container do mapa */
+        .map-wrapper {
+            width: 100%;
+            margin: 2rem 0;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            aspect-ratio: 1/1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
         
-        .portfolio-item:hover {
-            transform: translateY(-5px);
+        .map-container {
+            width: 100%;
+            height: 500px;
+            position: relative;
         }
         
-        .portfolio-img {
+        .map-frame {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            border: none;
         }
         
-        .portfolio-item:hover .portfolio-img {
-            transform: scale(1.05);
-        }
-        
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        .address-info {
+            background-color: rgba(40, 40, 40, 0.9);
             padding: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            border-radius: 10px;
+            margin-top: 1.5rem;
         }
         
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
+        .address-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
         }
         
-        .portfolio-title {
-            color: var(--light-color);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        .address-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
         
-        .portfolio-category {
+        .address-item {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .address-item i {
             color: var(--primary-color);
-            font-size: 0.9rem;
-        }
-        
-        /* Lightbox customization */
-        .lb-data .lb-caption {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--light-color);
-        }
-        
-        .lb-data .lb-details {
-            width: 100%;
-            text-align: center;
-        }
-        
-        .lb-data .lb-number {
-            display: none;
-        }
-        
-        .lb-nav a.lb-prev, .lb-nav a.lb-next {
-            opacity: 0.8;
-        }
-        
-        .lb-nav a.lb-prev:hover, .lb-nav a.lb-next:hover {
-            opacity: 1;
+            margin-right: 10px;
+            width: 20px;
         }
         
         /* Rodapé */
@@ -333,6 +274,33 @@
             font-size: 0.9rem;
         }
         
+        /* Botões de controle do mapa */
+        .map-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .map-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .map-btn:hover {
+            background-color: #b00321;
+            transform: translateY(-2px);
+        }
+        
         /* Responsividade */
         @media (max-width: 768px) {
             nav ul {
@@ -362,18 +330,18 @@
                 gap: 1.5rem;
             }
             
-            .portfolio-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 1rem;
+            .map-container {
+                height: 400px;
             }
             
-            .portfolio-filters {
-                gap: 0.5rem;
+            .map-controls {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .filter-btn {
-                padding: 0.4rem 1rem;
-                font-size: 0.9rem;
+            .map-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
         
@@ -399,9 +367,13 @@
                 padding: 1.5rem;
             }
             
-            .portfolio-grid {
-                grid-template-columns: 1fr;
+            .address-details {
+                flex-direction: column;
                 gap: 1rem;
+            }
+            
+            .map-container {
+                height: 350px;
             }
         }
         
@@ -415,18 +387,10 @@
             animation: fadeIn 1s ease-out;
         }
         
-        /* Badge para GIF */
-        .gif-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
+        /* Destaque para o endereço */
+        .highlight {
+            color: var(--primary-color);
             font-weight: bold;
-            z-index: 10;
         }
     </style>
 </head>
@@ -440,7 +404,7 @@
                 <a href="portifolio.html">Portfólio</a>
             </li>
             <li>
-                <a href="como-chegar.html">Como Chegar</a>
+                <a href="como chegar.html">Como Chegar</a>
             </li>
         </ul> 
     </nav>   
@@ -449,109 +413,52 @@
         <div class="logo-container">
             <img src="./img/LOGO O ORIGINAL.png" alt="O Original Barbershop" class="logo">
         </div>
-        <h1>Portfólio</h1>
-        <h3>Confira nossos trabalhos e estilo</h3>
+        <h1>Como Chegar</h1>
+        <h3>Encontre facilmente nossa localização</h3>
     </header>
     
     <main class="container">
         <section>
-            <h2>Nossos Trabalhos</h2>
-            <p>Explore nossa galeria de cortes de cabelo, barbas e styles. Cada trabalho é único e feito com a máxima dedicação para nossos clientes.</p>
+            <h2>Nossa Localização</h2>
+            <p>Estamos localizados no centro de Monte Carmelo, com fácil acesso e estacionamento conveniente. Use o mapa abaixo para nos encontrar e planejar sua visita.</p>
             
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="cortes">Cortes</button>
-                <button class="filter-btn" data-filter="barbas">Barbas</button>
-                <button class="filter-btn" data-filter="platinado">Platinado</button>
-                <button class="filter-btn" data-filter="degradê">Degradê</button>
-                <button class="filter-btn" data-filter="social">Social</button>
+            <div class="map-controls">
+                <button class="map-btn" onclick="openInGoogleMaps()">
+                    <i class="fab fa-google"></i> Abrir no Google Maps
+                </button>
+                <button class="map-btn" onclick="openInWaze()">
+                    <i class="fab fa-waze"></i> Abrir no Waze
+                </button>
             </div>
             
-            <div class="portfolio-grid">
-                <!-- Item 1 -->
-                <div class="portfolio-item" data-category="cortes">
-                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corte moderno" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Corte Moderno</h3>
-                        <p class="portfolio-category">Cortes</p>
-                    </div>
+            <div class="map-wrapper">
+                <div class="map-container">
+                    <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3778.596599376591!2d-47.49508125837321!3d-18.72687017293865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a589bca56975e3%3A0x2d22191387e0b868!2sO%20Original%20Barbershop!5e0!3m2!1spt-BR!2sbr!4v1757535388463!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                
-                <!-- Item 2 -->
-                <div class="portfolio-item" data-category="barbas">
-                    <img src="https://images.unsplash.com/photo-1585747861815-3996b311ca79?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Barba estilo" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Barba Estilo</h3>
-                        <p class="portfolio-category">Barbas</p>
+            </div>
+            
+            <div class="address-info">
+                <h3>Informações de Localização</h3>
+                <div class="address-details">
+                    <div class="address-item">
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Endereço:</strong> <span class="highlight">Avenida Braulino Martins Mundim, 1040 - Centro, Monte Carmelo - MG</span></p>
                     </div>
-                </div>
-                
-                <!-- Item 3 -->
-                <div class="portfolio-item" data-category="degradê">
-                    <img src="https://images.unsplash.com/photo-1516534775068-ba3e7458af70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Degradê preciso" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Degradê Preciso</h3>
-                        <p class="portfolio-category">Degradê</p>
+                    <div class="address-item">
+                        <p><i class="fas fa-clock"></i> <strong>Horário:</strong> Ter a Sex: 08h às 20h | Sáb 8h às 16h | Dom e Seg Fechado</p>
                     </div>
-                </div>
-                
-                <!-- Item 4 - GIF Example -->
-                <div class="portfolio-item" data-category="social">
-                    <span class="gif-badge">GIF</span>
-                    <img src="https://media.giphy.com/media/l0HU7JI1m1eEwz7Kw/giphy.gif" alt="Transformação de corte" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Transformação</h3>
-                        <p class="portfolio-category">Social</p>
+                    <div class="address-item">
+                        <p><i class="fas fa-phone"></i> <strong>Telefone:</strong> <span class="highlight">(34) 9 9841-1380</span></p>
                     </div>
-                </div>
-                
-                <!-- Item 5 -->
-                <div class="portfolio-item" data-category="platinado">
-                    <img src="https://images.unsplash.com/photo-1593705114312-a0ee03a3f7b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Platinado global" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Platinado Global</h3>
-                        <p class="portfolio-category">Platinado</p>
-                    </div>
-                </div>
-                
-                <!-- Item 6 -->
-                <div class="portfolio-item" data-category="cortes">
-                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corte clássico" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Corte Clássico</h3>
-                        <p class="portfolio-category">Cortes</p>
-                    </div>
-                </div>
-                
-                <!-- Item 7 - GIF Example -->
-                <div class="portfolio-item" data-category="barbas">
-                    <span class="gif-badge">GIF</span>
-                    <img src="https://media.giphy.com/media/3o7TKsQ8UQ4l4LhGz6/giphy.gif" alt="Modelagem de barba" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Modelagem de Barba</h3>
-                        <p class="portfolio-category">Barbas</p>
-                    </div>
-                </div>
-                
-                <!-- Item 8 -->
-                <div class="portfolio-item" data-category="social">
-                    <img src="https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Estilo social" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 class="portfolio-title">Estilo Social</h3>
-                        <p class="portfolio-category">Social</p>
+                    <div class="address-item">
+                        <p><i class="fas fa-car"></i> <strong>Estacionamento:</strong> Fácil Estacionamento</p>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <section>
-            <h2>Agende seu Horário</h2>
-            <p>Gostou do que viu? Agende seu horário e venha fazer parte do nosso portfólio!</p>
-            <p style="text-align: center; margin-top: 1.5rem;">
-                <a href="https://wa.me/553498411380" target="_blank" style="display: inline-block; background-color: var(--primary-color); color: white; padding: 1rem 2rem; border-radius: 30px; font-weight: bold; text-transform: uppercase;">
-                    Agendar pelo WhatsApp
-                </a>
-            </p>
+            
+            <h3>Instruções</h3>
+            <p>Para chegar à nossa barbearia, siga em direção ao centro de Monte Carmelo. Estamos localizados na Avenida Braulino Martins Mundim, uma das principais vias da cidade. Procure por nossa fachada "O Original Barberhop" e a placa vertical de barbearia tradicional!</p>
+            
+            <p>Estamos próximos a pontos de referência como o Supermercado Bahamas, com fácil acesso para quem vem de qualquer região da cidade.</p>
         </section>
     </main>
     
@@ -573,48 +480,19 @@
         </div>
         
         <div class="copyright">
-            <p>&copy; 2023 O Original Barbershop - Todos os direitos reservados</p>
+            <p>&copy; 2020 O Original Barbershop - Todos os direitos reservados</p>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
     <script>
-        // Configuração do Lightbox
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'showImageNumberLabel': false,
-            'alwaysShowNavOnTouchDevices': true
-        });
+        // Funções para abrir o mapa em aplicativos externos
+        function openInGoogleMaps() {
+            window.open('https://maps.google.com?q=O+Original+Barbershop+Avenida+Braulino+Martins+Mundim+1040+Centro+Monte+Carmelo+MG');
+        }
         
-        // Filtros do portfólio
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove a classe active de todos os botões
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Adiciona a classe active ao botão clicado
-                    button.classList.add('active');
-                    
-                    const filterValue = button.getAttribute('data-filter');
-                    
-                    portfolioItems.forEach(item => {
-                        if (filterValue === 'all') {
-                            item.style.display = 'block';
-                        } else {
-                            if (item.getAttribute('data-category') === filterValue) {
-                                item.style.display = 'block';
-                            } else {
-                                item.style.display = 'none';
-                            }
-                        }
-                    });
-                });
-            });
-        });
+        function openInWaze() {
+            window.open('https://waze.com/ul?ll=-18.72687,-47.49508&navigate=yes');
+        }
     </script>
 </body>
 </html>
